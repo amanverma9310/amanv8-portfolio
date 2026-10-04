@@ -1,36 +1,58 @@
+import { useEffect, useRef, useState } from 'react';
+import { THREE, createTechStage } from './techBallRenderer';
 import './MobileScrollTiming.css';
-import { useRef } from 'react';
-
-// CSS faces share the browser compositor instead of allocating a WebGL
-// context for every skill. The logo stays an ordinary, reliable inline SVG.
-const phi = (1 + Math.sqrt(5)) / 2;
-const vertices = [[-1,phi,0],[1,phi,0],[-1,-phi,0],[1,-phi,0],[0,-1,phi],[0,1,phi],[0,-1,-phi],[0,1,-phi],[phi,0,-1],[phi,0,1],[-phi,0,-1],[-phi,0,1]].map(v=>v.map(n=>n*19));
-const indices = [[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]];
-const faces = indices.map(([a,b,c])=>{
-  const A=vertices[a], B=vertices[b], C=vertices[c];
-  const u=B.map((n,i)=>n-A[i]), v=C.map((n,i)=>n-A[i]);
-  const normal=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];
-  const length=Math.hypot(...normal); const n=normal.map(x=>x/length);
-  const shade=Math.round(94+32*(n[0]*-.3+n[1]*-.5+n[2]*.8));
-  return {transform:`matrix3d(${[...u.map(x=>x/100),0,...v.map(x=>x/100),0,...n,0,...A,1].join(',')})`,background:`rgb(${shade} ${shade+7} ${shade+12})`};
-});
 
 export default function TechBall({ skill, Icon }) {
-  const body=useRef(null), drag=useRef(null), angle=useRef([0,0]);
-  const turn=(dx,dy)=>{angle.current=[angle.current[0]+dx,angle.current[1]+dy];if(body.current)body.current.style.transform=`rotateX(${angle.current[1]}deg) rotateY(${angle.current[0]}deg)`;};
-  const reset=()=>{angle.current=[0,0];turn(0,0);};
+  const mount = useRef(null), icon = useRef(null), object = useRef(null), drag = useRef(null), stageRef = useRef(null);
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let stage, alive = true, texture, logoLoaded = false;
+    queueMicrotask(() => { if (alive) setReady(false); });
+    try {
+      const group = new THREE.Group();
+      stage = createTechStage(mount.current, () => { if (alive && logoLoaded) setReady(true); }, () => { if (alive) setReady(false); });
+      stageRef.current = stage;
+      stage.camera.position.z = 3.9;
+      const body = new THREE.Mesh(new THREE.IcosahedronGeometry(1, 1),
+        new THREE.MeshStandardMaterial({ color: '#747c7f', roughness: .65, metalness: .22, flatShading: true }));
+      group.add(body);
+      const face = new THREE.Mesh(new THREE.CircleGeometry(.6, 8),
+        new THREE.MeshStandardMaterial({ color: skill.bg || '#142633', roughness: .5 }));
+      face.position.z = .975; group.add(face);
+      stage.scene.add(group); object.current = group;
+      const svg = icon.current.querySelector('svg').cloneNode(true);
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      svg.setAttribute('width', '256'); svg.setAttribute('height', '256');
+      svg.setAttribute('fill', skill.color || '#ffffff'); svg.style.color = skill.color || '#ffffff';
+      const img = new Image();
+      img.onload = () => {
+        if (!alive) return;
+        texture = new THREE.Texture(img); texture.colorSpace = THREE.SRGBColorSpace; texture.needsUpdate = true;
+        const logo = new THREE.Mesh(new THREE.PlaneGeometry(.85, .85), new THREE.MeshBasicMaterial({ map: texture, transparent: true, side: THREE.DoubleSide }));
+        logo.position.z = .99; group.add(logo); logoLoaded = true; stage.render();
+      };
+      img.onerror = () => { if (alive) setReady(false); };
+      img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(new XMLSerializer().serializeToString(svg))}`;
+    } catch { /* The visible SVG fallback remains usable without WebGL. */ }
+    return () => { alive = false; object.current = null; stageRef.current = null; stage?.dispose(); texture?.dispose(); };
+  }, [skill.color, skill.bg, Icon]);
+  const turn = (dx, dy) => {
+    if (!object.current) return;
+    object.current.rotation.y += dx; object.current.rotation.x += dy;
+    stageRef.current?.render();
+  };
+  const reset = () => { object.current?.rotation.set(0,0,0); stageRef.current?.render(); };
   return <button type="button" className="tech-ball" aria-label={`${skill.name}: drag to rotate, arrow keys to turn, Enter to reset`}
-    onPointerDown={e=>{if(e.button!==0)return;drag.current=[e.clientX,e.clientY];e.currentTarget.setPointerCapture(e.pointerId);}}
-    onPointerMove={e=>{if(!drag.current)return;turn((e.clientX-drag.current[0])*.8,(e.clientY-drag.current[1])*.8);drag.current=[e.clientX,e.clientY];}}
-    onPointerUp={()=>{drag.current=null;}} onPointerCancel={()=>{drag.current=null;}} onLostPointerCapture={()=>{drag.current=null;}}
-    onDoubleClick={reset} onKeyDown={e=>{const steps={ArrowLeft:[-17,0],ArrowRight:[17,0],ArrowUp:[0,-17],ArrowDown:[0,17]};if(steps[e.key]){e.preventDefault();turn(...steps[e.key]);}if(e.key==='Enter'||e.key===' '){e.preventDefault();reset();}}}>
-    <span aria-hidden="true" style={{position:'absolute',top:0,left:0,width:'100%',height:'80%',perspective:500,display:'grid',placeItems:'center',pointerEvents:'none'}}>
-      <span ref={body} style={{position:'relative',width:0,height:0,transformStyle:'preserve-3d'}}>
-        {faces.map((face,i)=><span key={i} style={{position:'absolute',left:0,top:0,width:100,height:100,transformOrigin:'0 0',clipPath:'polygon(0 0,100% 0,0 100%)',backfaceVisibility:'visible',...face}}/>)}
-        <span style={{position:'absolute',left:-23,top:-23,width:46,height:46,transform:'translateZ(33px)',display:'grid',placeItems:'center',background:skill.bg||'#142633',borderRadius:10,backfaceVisibility:'hidden'}}><Icon size={33} color={skill.color||'#fff'}/></span>
-        <span style={{position:'absolute',left:-23,top:-23,width:46,height:46,transform:'rotateY(180deg) translateZ(33px)',display:'grid',placeItems:'center',background:skill.bg||'#142633',borderRadius:10,backfaceVisibility:'hidden'}}><Icon size={33} color={skill.color||'#fff'}/></span>
-      </span>
-    </span>
+    onPointerDown={(e) => { drag.current = [e.clientX, e.clientY]; e.currentTarget.setPointerCapture(e.pointerId); }}
+    onPointerMove={(e) => { if (!drag.current) return; turn((e.clientX-drag.current[0])*.018, (e.clientY-drag.current[1])*.018); drag.current=[e.clientX,e.clientY]; }}
+    onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }}
+    onKeyDown={(e) => {
+      const turns = { ArrowLeft: [-.3,0], ArrowRight: [.3,0], ArrowUp: [0,-.3], ArrowDown: [0,.3] };
+      if (turns[e.key]) { e.preventDefault(); turn(...turns[e.key]); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); reset(); }
+    }} onDoubleClick={reset}>
+    <span ref={mount} className="tech-ball-canvas" />
+    <span ref={icon} className={`tech-ball-fallback ${ready ? 'is-ready' : ''}`} aria-hidden="true"><Icon size={38} color={skill.color} /></span>
     <span className="tech-ball-name">{skill.name}</span>
   </button>;
 }

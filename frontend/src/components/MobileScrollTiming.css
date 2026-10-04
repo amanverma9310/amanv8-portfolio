@@ -1,7 +1,8 @@
-/* Mobile only: 30% slower progress for the same scrolling distance.
-   Hero travel: (700 - 100) / .7 + 100.
-   About progress range includes the viewport: (1000 + 100) / .7 - 100. */
+/* Phones only: 50% faster than the previous mobile timing.
+   Divide the previous scroll progress range by 1.5.
+   Hero: (957.143 - 100) / 1.5 + 100.
+   About: (1471.429 + 100) / 1.5 - 100. */
 @media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
-  .portrait-hero { height: 957.143svh; }
-  .about-experience { min-height: 1471.429vh; }
+  .portrait-hero { height: 671.429svh; }
+  .about-experience { min-height: 947.619vh; }
 }
