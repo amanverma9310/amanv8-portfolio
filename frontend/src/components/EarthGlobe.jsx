@@ -59,6 +59,6 @@ export default function EarthGlobe({ compact=false }) {
       <button type="button" onClick={() => { pausedRef.current=!pausedRef.current; setPaused(pausedRef.current); }} aria-pressed={paused}>{paused ? 'Resume rotation' : 'Pause rotation'}</button>
       <button type="button" onClick={reset}>Reset view</button>
     </div>
-    {!compact && <p className="earth-hint">Drag to explore · “Stylized planet” by <a href="https://sketchfab.com/cmzw" target="_blank" rel="noopener noreferrer">cmzw</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></p>}
+    {!compact && <p className="earth-hint">Drag to explore · “Stylized planet” </p>}
   </div>;
 }
