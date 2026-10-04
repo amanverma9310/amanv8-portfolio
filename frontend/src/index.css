@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: #07080a;
+  color: #f2f3f5;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #07080a;
+}
+::-webkit-scrollbar-thumb {
+  background: #26282e;
+  border-radius: 8px;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.35);
+  color: transparent;
+}
+
+.text-stroke-thin {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+}
+
+/* Interactive toolkit, ribbon Earth, and scroll-open About experience. */
+.experience-eyebrow { font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;color:#79d8db; }
+.tech-experience { padding:58px 20px 65px;border-block:1px solid #ffffff12;background:#060914; }
+.tech-heading { text-align:center; }
+.tech-heading h2 { font-size:clamp(24px,4vw,38px);font-weight:800;margin:8px 0;letter-spacing:-.04em; }
+.tech-heading p { font-size:12px;color:#ffffff66; }
+.tech-grid { display:flex;flex-wrap:wrap;justify-content:center;gap:18px 24px;max-width:520px;margin:30px auto 0; }
+.tech-ball { position:relative;display:flex;align-items:center;justify-content:center;width:100px;height:125px;cursor:grab;touch-action:pan-y;outline-offset:4px;border-radius:12px; }
+.tech-ball:active { cursor:grabbing; }
+.tech-ball:focus-visible,.earth-canvas:focus-visible { outline:2px solid #84dae2; }
+.tech-ball-canvas { position:absolute;top:0;left:0;width:100%;height:100px; }
+.tech-ball-canvas canvas { width:100%;height:100%; }
+.tech-ball-fallback { position:absolute;top:20px;display:flex;align-items:center;justify-content:center;width:64px;height:64px;background:#303943;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%); }
+.tech-ball-fallback.is-ready { visibility:hidden; }
+.tech-ball-name { position:absolute;bottom:4px;color:#ffffff90;font-size:11px;line-height:1.2;padding:5px 7px;border-radius:5px;transition:color .2s,background .2s;white-space:nowrap; }
+.tech-ball:hover .tech-ball-name,.tech-ball:focus-visible .tech-ball-name { color:#fff;background:#28203e; }
+.earth-experience { width:100%;height:100%;position:relative; }
+.earth-canvas { position:relative;width:100%;height:calc(100% - 48px);min-height:180px;cursor:grab;touch-action:pan-y;border-radius:50%; }
+.earth-canvas:active { cursor:grabbing; }
+.earth-canvas canvas { position:relative;z-index:1; }
+.earth-controls { display:flex;justify-content:center;gap:6px;position:relative;z-index:2; }
+.earth-controls button { padding:5px 9px;border:1px solid #ffffff22;background:#111621dd;color:#e2ebff;border-radius:999px;font:10px 'JetBrains Mono',monospace;white-space:nowrap; }
+.earth-controls button:hover { border-color:#97c8f7; }
+.earth-hint { font-size:11px;color:#ffffff70;text-align:center;margin-top:8px; }
+.earth-fallback { position:absolute;inset:0;display:grid;place-items:center;pointer-events:none; }
+.earth-fallback span { font-size:100px;filter:drop-shadow(0 0 20px #5288ae); }
+.about-experience { position:relative;min-height:1000vh;isolation:isolate;background:#030507;border-bottom:1px solid #ffffff13;padding:65px 20px 100px; }
+.about-experience::before { content:'';position:absolute;inset:0;z-index:-1;background-image:radial-gradient(#6591954d .8px,transparent .8px);background-size:20px 20px;mask-image:radial-gradient(ellipse at center,#000,transparent 68%); }
+.about-sticky { position:sticky;top:7vh;width:100%;max-width:920px;margin:auto;transform:scale(.8);transform-origin:top center; }
+.about-title { text-align:center;margin-bottom:34px; }
+.about-title h2 { font-size:clamp(32px,5vw,58px);letter-spacing:-.055em;line-height:1.1;font-weight:800;margin-top:12px; }
+.about-title h2 span { color:#7fced4; }
+.about-window { position:relative;perspective:1400px;min-height:490px;max-width:760px;margin:auto;border:1px solid #ffffff22;border-radius:28px;box-shadow:0 0 50px #43b9ba12;background:radial-gradient(ellipse at 50% 20%,#103037,#080c16 60%,#120b21); }
+.about-profile { position:relative;z-index:1;padding:32px 50px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;min-height:490px; }
+.about-portrait { width:68px;height:68px;object-fit:cover;object-position:center 20%;border-radius:50%;border:2px solid #95eeec55;box-shadow:0 0 28px #46d3dc55; }
+.about-profile h3 { font-size:28px;font-weight:800;letter-spacing:-.04em;line-height:1.05; }
+.about-role { color:#9de9ed;background:#21565e77;border:1px solid #68cbd633;border-radius:999px;padding:4px 12px;font:9px 'JetBrains Mono',monospace;letter-spacing:.2em; }
+.about-profile p { color:#d4dbe1b3;font-size:13px;line-height:1.7;max-width:535px; }
+.about-profile p.about-secondary { font-size:12px;color:#c1cbd791; }
+.about-socials { display:flex;flex-wrap:wrap;justify-content:center;gap:8px; }
+.about-socials a { display:flex;align-items:center;gap:6px;border:1px solid #ffffff18;background:#ffffff05;border-radius:999px;padding:6px 11px;font-size:10px;color:#c9d3da; }
+.about-socials a:hover { color:#aaf3f5;border-color:#6ce0e455; }
+.about-arsenal { display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:540px; }
+.about-arsenal span { display:inline-flex;align-items:center;gap:5px;font-size:9px;color:#9da9b8;background:#ffffff05;border-radius:999px;padding:4px 8px;border:1px solid #ffffff0d; }
+.about-project-link { display:flex;align-items:center;gap:9px;font:10px 'JetBrains Mono',monospace;letter-spacing:.1em;border:1px solid #ffffff20;border-radius:999px;padding:10px 17px;margin-top:3px;box-shadow:0 0 15px #46b8c410; }
+.about-project-link:hover { background:#ffffff0a; }
+.about-door { position:absolute;z-index:3;top:0;bottom:0;width:50%;backface-visibility:visible;background:linear-gradient(110deg,#222332,#101521);border:1px solid #ffffff17;box-shadow:inset 0 0 40px #00000025;pointer-events:none; }
+.about-door-left { left:0;border-radius:27px 0 0 27px;transform-origin:left center; }
+.about-door-right { right:0;border-radius:0 27px 27px 0;transform-origin:right center;background:linear-gradient(250deg,#222332,#101521); }
+.about-seal { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font-size:38px;color:#b0fbff;border:1px solid #6cf7ef55;background:#18343c;box-shadow:0 0 40px #59f7ed50; }
+.about-seal-label { position:absolute;top:90px;white-space:nowrap;font:10px 'JetBrains Mono',monospace;letter-spacing:.15em;color:#b1cace; }
+.about-actions { display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin:23px 0;color:#8b9aa8;font-size:11px; }
+.about-actions button { border:1px solid #ffffff20;border-radius:999px;padding:6px 12px; }
+.about-actions button:hover { color:#b0fbff; }
+.about-horizon { position:absolute;bottom:35px;left:10%;width:80%;height:75px;border-top:2px solid #83dbed;border-radius:50%;box-shadow:0 -7px 20px -7px #47ecdd,0 -20px 45px -20px #8071ed;opacity:.5; }
+@media (max-width:640px) {
+ .tech-grid { gap:8px 12px; }.tech-ball { width:82px;height:110px; }.tech-ball-canvas { height:82px; }.tech-ball-name { font-size:10px; }.tech-ball-fallback { width:52px;height:52px;top:15px; }
+ .about-experience { min-height:1000vh;padding-inline:22px; }.about-sticky { top:25px; }.about-title { margin-bottom:24px; }.about-window { min-height:545px;border-radius:22px; }.about-profile { padding:25px 19px;min-height:545px;gap:12px; }.about-profile p { font-size:12px; }.about-profile p.about-secondary { font-size:11px; }.about-door-left { border-radius:21px 0 0 21px; }.about-door-right { border-radius:0 21px 21px 0; }
+}
+@media (prefers-reduced-motion:reduce) {
+ html { scroll-behavior:auto; }
+}
+
+.earth-compact .earth-controls { gap:4px; }
+.earth-compact .earth-controls button { font-size:8px;padding:4px 5px; }
+.earth-compact .earth-canvas { min-height:unset; }

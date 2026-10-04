@@ -1,0 +1,418 @@
+.portfolio-charcoal main > section {
+  border-color: #ffffff0b;
+}
+.portfolio-charcoal .experience-eyebrow {
+  color: #84b2f2;
+}
+.portfolio-charcoal #projects,
+.portfolio-charcoal #certifications {
+  padding-block: 90px;
+}
+.section-description {
+  font-size: 15px;
+  color: #a5b0bf;
+  margin-top: 20px;
+  line-height: 1.7;
+}
+.project-heading h2 {
+  font-size: clamp(35px, 4.3vw, 60px);
+  letter-spacing: -0.05em;
+}
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  perspective: 1800px;
+}
+.work-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ffffff16;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #202732, #161b22);
+  box-shadow: 0 20px 55px #0003;
+  transform-style: preserve-3d;
+}
+.work-image-stage {
+  position: relative;
+  padding: 48px 30px 43px;
+  background: radial-gradient(ellipse at 50% 25%, #84b2f226, transparent 70%);
+  perspective: 1100px;
+}
+.work-browser {
+  border: 1px solid #ffffff23;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #111418;
+  transform: rotateX(5deg) rotateY(-4deg);
+  box-shadow: 12px 24px 32px #0007;
+  transition: transform 0.4s;
+}
+.work-card:hover .work-browser {
+  transform: rotateX(0) rotateY(0) translateY(-5px);
+}
+.browser-toolbar {
+  height: 29px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-inline: 12px;
+  background: #252c35;
+}
+.browser-toolbar > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #768295;
+}
+.browser-toolbar p {
+  flex: 1;
+  text-align: center;
+  font-size: 8px;
+  color: #a6b1bf;
+  margin-right: 27px;
+  letter-spacing: 0.03em;
+}
+.work-browser img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.85;
+  object-fit: cover;
+  object-position: top;
+}
+.work-category {
+  position: absolute;
+  bottom: 17px;
+  left: 31px;
+  font:
+    8px "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.18em;
+  color: #9cb1cd;
+}
+.work-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 28px 30px 30px;
+  border-top: 1px solid #ffffff0c;
+}
+.work-copy h3 {
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+.work-copy > p {
+  margin: 12px 0 20px;
+  color: #aeb9c8;
+  font-size: 13px;
+  line-height: 1.7;
+  min-height: 67px;
+}
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.work-tags span {
+  font:
+    9px "JetBrains Mono",
+    monospace;
+  color: #a7bedb;
+  border: 1px solid #84b2f221;
+  padding: 6px 8px;
+  border-radius: 5px;
+  background: #84b2f208;
+}
+.work-features {
+  margin: 22px 0;
+  color: #acb7c7;
+  font-size: 11px;
+  line-height: 1.8;
+  list-style: none;
+}
+.work-features li::before {
+  content: "↗";
+  color: #84b2f2;
+  margin-right: 10px;
+}
+.work-links {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #ffffff12;
+  padding-top: 20px;
+}
+.work-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #84b2f2;
+}
+.work-links a + a {
+  color: #a8b3c2;
+}
+.portfolio-charcoal .about-experience::before {
+  opacity: 0.3;
+}
+.portfolio-charcoal .about-window {
+  border-color: #84b2f230;
+  box-shadow:
+    0 25px 70px #0005,
+    0 0 70px #84b2f20a;
+}
+.portfolio-charcoal .about-door {
+  background: linear-gradient(145deg, #2a3442, #161b23 70%);
+  box-shadow:
+    inset 0 0 0 1px #ffffff08,
+    inset -8px 0 18px #0004;
+}
+.about-door::after {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border: 1px solid #84b2f215;
+  border-radius: 12px;
+}
+.about-door-left::before,
+.about-door-right::before {
+  position: absolute;
+  top: 44%;
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  color: #ffffff22;
+  backface-visibility: hidden;
+  transform: translateZ(1px);
+}
+.about-door-left::before {
+  content: "";
+  right: 30px;
+}
+.about-door-right::before {
+  content: "";
+  left: 30px;
+}
+.portfolio-charcoal .about-seal {
+  background: linear-gradient(140deg, #37485e, #1b2532);
+  border-color: #84b2f260;
+  box-shadow: 0 8px 25px #0006;
+}
+.portfolio-charcoal .tech-experience {
+  padding: 85px 24px 75px;
+  background:
+    radial-gradient(ellipse at center, #84b2f207, transparent 65%), #111418;
+}
+.portfolio-charcoal .tech-grid {
+  max-width: 1050px;
+  gap: 15px 27px;
+  margin-top: 38px;
+}
+.tech-ball::after {
+  content: "";
+  position: absolute;
+  bottom: 24px;
+  width: 76px;
+  height: 12px;
+  border: 1px solid #84b2f226;
+  border-radius: 50%;
+  box-shadow: 0 9px 15px #0005;
+  background: #19212d66;
+  z-index: 0;
+}
+.tech-ball-canvas {
+  z-index: 1;
+}
+.tech-ball-name {
+  z-index: 2;
+}
+.portfolio-charcoal .credential-card {
+  background: linear-gradient(145deg, #1e2631, #171c23);
+  border-color: #ffffff14;
+  box-shadow: 0 8px 25px #0002;
+  padding: 28px;
+}
+.portfolio-charcoal .credential-card svg {
+  color: #84b2f2;
+}
+.portfolio-charcoal #certifications h2 {
+  letter-spacing: -0.04em;
+  font-size: 44px;
+}
+.portfolio-charcoal .contact-earth-section {
+  padding-top: 105px;
+  padding-bottom: 90px;
+}
+.portfolio-charcoal .contact-earth-panel {
+  background: linear-gradient(150deg, #202833, #171c23);
+  border: 1px solid #84b2f21c;
+  box-shadow: 0 22px 60px #0003;
+}
+.contact-earth-panel h2 {
+  font-size: 58px;
+}
+.contact-earth-panel .contact-earth-form {
+  gap: 19px;
+}
+.contact-earth-form input,
+.contact-earth-form textarea {
+  padding: 15px 17px;
+}
+.portfolio-charcoal .contact-earth-form button {
+  background: #84b2f2;
+  color: #111418;
+  border-color: #84b2f2;
+}
+.portfolio-charcoal .design-footer {
+  max-width: 1220px;
+  margin: auto;
+  padding: 70px 24px 105px;
+  background: #111418;
+}
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.footer-top h2 {
+  font-size: clamp(35px, 4.1vw, 58px);
+  line-height: 1.12;
+  letter-spacing: -0.055em;
+  font-weight: 650;
+  margin-top: 20px;
+}
+.footer-top h2 span {
+  color: #84b2f2;
+}
+.footer-connect a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 15px;
+  border-bottom: 1px solid #84b2f24d;
+  padding-bottom: 16px;
+  color: #d0deef;
+}
+.footer-connect p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #94a1b2;
+  margin-top: 18px;
+}
+.footer-signature {
+  font-size: clamp(55px, 10vw, 144px);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 1.2;
+  color: #ffffff09;
+  margin: 60px 0 22px;
+  border-bottom: 1px solid #ffffff13;
+  white-space: nowrap;
+}
+.footer-signature span {
+  color: #84b2f230;
+  float: right;
+}
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: #9eabbc;
+  font-size: 10px;
+}
+.footer-bottom div,
+.footer-bottom button {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+@media (max-width: 767px) {
+  .project-gallery {
+    grid-template-columns: 1fr;
+  }
+  .work-image-stage {
+    padding: 34px 22px 39px;
+  }
+  .work-copy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 25px;
+  }
+  .work-copy > p {
+    min-height: 0;
+  }
+  .portfolio-charcoal #projects,
+  .portfolio-charcoal #certifications {
+    padding-block: 65px;
+  }
+  .portfolio-charcoal #certifications h2 {
+    font-size: 34px;
+  }
+  .portfolio-charcoal .tech-grid {
+    max-width: 440px;
+    gap: 10px 15px;
+  }
+  .portfolio-charcoal .tech-experience {
+    padding-block: 55px;
+  }
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-connect {
+    width: 100%;
+  }
+  .footer-connect a {
+    justify-content: space-between;
+  }
+  .footer-signature {
+    margin-top: 35px;
+  }
+  .footer-bottom {
+    flex-wrap: wrap;
+    row-gap: 24px;
+  }
+  .footer-bottom div {
+    gap: 16px;
+  }
+  .footer-bottom button {
+    width: 100%;
+    justify-content: center;
+  }
+  .portfolio-charcoal .contact-earth-section {
+    padding-top: 45px;
+  }
+  .contact-earth-panel h2 {
+    font-size: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-browser,
+  .work-card:hover .work-browser {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Keep the entire signature and arrow within even a narrow mobile screen. */
+@media (max-width: 767px) {
+  .portfolio-charcoal .footer-signature {
+    font-size: clamp(26px, 10.8vw, 70px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    letter-spacing: -0.06em;
+  }
+  .portfolio-charcoal .footer-signature span {
+    float: none;
+    flex: none;
+    font-size: 0.9em;
+  }
+}

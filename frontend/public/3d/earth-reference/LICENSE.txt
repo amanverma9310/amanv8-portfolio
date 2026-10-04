@@ -1,0 +1,10 @@
+Stylized planet — cmzw
+Creator: https://sketchfab.com/cmzw
+Original model: https://sketchfab.com/3d-models/stylized-planet-789725db86f547fc9163b00f302c3e70
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+The original geometry and textures are unchanged. The portfolio adds browser
+rendering, automatic rotation, drag/keyboard controls, pause and reset.
+Asset retrieved from the public reference site's /Portfolio/planet/ directory.
+Original scene.gltf asset metadata contains the creator, source and license.

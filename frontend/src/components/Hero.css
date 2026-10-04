@@ -1,0 +1,377 @@
+.portrait-hero {
+  position: relative;
+  height: 700svh;
+  background: #111418;
+  color: #eef1f5;
+}
+.portrait-hero-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.portrait-hero-visual {
+  position: absolute;
+  inset: 0;
+  transform-origin: 55% 34%;
+  will-change: transform, opacity;
+}
+.portrait-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 20%;
+}
+.portrait-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      #111418f2 0%,
+      #111418bd 25%,
+      #11141828 59%,
+      #11141814 100%
+    ),
+    linear-gradient(
+      0deg,
+      #111418 0%,
+      #11141800 26%,
+      #11141800 77%,
+      #11141870 100%
+    );
+  pointer-events: none;
+}
+.portrait-hero-content {
+  position: relative;
+  height: 100%;
+  width: min(1280px, 100%);
+  margin: auto;
+  padding: 135px 48px 105px;
+  display: flex;
+  align-items: center;
+}
+.portrait-hero-intro {
+  width: min(520px, 48%);
+}
+.portrait-hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #c7d9f1;
+  font-size: 12px;
+  margin: 0 0 28px;
+}
+.portrait-hero-eyebrow span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #84b2f2;
+  box-shadow: 0 0 10px #84b2f260;
+}
+.portrait-hero-name {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: #c0cad9;
+  margin: 0 0 18px;
+}
+.portrait-hero h1 {
+  font-size: clamp(52px, 5.7vw, 82px);
+  line-height: 1.02;
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  margin: 0 0 23px;
+}
+.portrait-hero h1 span,
+.portrait-hero-story h2 span {
+  color: #84b2f2;
+}
+.portrait-hero-description {
+  max-width: 365px;
+  color: #c2cbd8;
+  line-height: 1.75;
+  font-size: 15px;
+  margin: 0 0 28px;
+}
+.portrait-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.portrait-hero-actions :is(button, a) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid #ffffff30;
+  border-radius: 7px;
+  padding: 12px 17px;
+  font-size: 13px;
+  color: #eef1f5;
+  background: #11141865;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.portrait-hero-actions .portrait-hero-primary {
+  background: #84b2f2;
+  color: #111418;
+  border-color: #84b2f2;
+  font-weight: 600;
+}
+.portrait-hero-actions :is(button, a):hover {
+  background: #303b49;
+  border-color: #84b2f2;
+}
+.portrait-hero-actions .portrait-hero-primary:hover {
+  background: #aecdfa;
+}
+.portrait-hero :is(button, a):focus-visible {
+  outline: 2px solid #84b2f2;
+  outline-offset: 5px;
+}
+.portrait-hero-story {
+  position: absolute;
+  left: 48px;
+  top: 47%;
+  pointer-events: none;
+}
+.portrait-hero-story h2 {
+  font-size: clamp(28px, 3.2vw, 46px);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  margin-bottom: 17px;
+}
+.portrait-hero-story > p:last-child {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #c2cbd8;
+}
+.portrait-hero-footer {
+  position: absolute;
+  bottom: 32px;
+  left: max(48px, calc((100% - 1184px) / 2));
+  right: max(48px, calc((100% - 1184px) / 2));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  color: #b3bdcb;
+}
+.portrait-hero-footer button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 0;
+  padding: 10px 0;
+  cursor: pointer;
+}
+.portrait-hero-end {
+  position: absolute;
+  bottom: 0;
+}
+.portrait-hero--still {
+  height: auto;
+}
+.portrait-hero--still .portrait-hero-stage {
+  position: relative;
+}
+.portrait-hero--still .portrait-hero-visual {
+  will-change: auto;
+}
+@media (max-width: 900px) {
+  .portrait-hero-content {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .portrait-hero-story {
+    left: 30px;
+  }
+  .portrait-hero-footer {
+    left: 30px;
+    right: 30px;
+  }
+  .portrait-hero h1 {
+    font-size: 62px;
+  }
+  .portrait-hero-intro {
+    width: 53%;
+  }
+}
+@media (max-width: 600px) {
+  .portrait-hero-stage {
+    min-height: 680px;
+  }
+  .portrait-hero-visual {
+    transform-origin: 55% 29%;
+  }
+  .portrait-hero-image {
+    object-position: 55% 10%;
+  }
+  .portrait-hero-shade {
+    background: linear-gradient(
+      0deg,
+      #111418 0%,
+      #111418d9 26%,
+      #11141855 49%,
+      #11141808 78%,
+      #11141860 100%
+    );
+  }
+  .portrait-hero-content {
+    padding: 110px 24px 95px;
+    align-items: flex-end;
+  }
+  .portrait-hero-intro {
+    width: 100%;
+  }
+  .portrait-hero-eyebrow {
+    margin-bottom: 15px;
+  }
+  .portrait-hero-name {
+    font-size: 9px;
+    margin-bottom: 12px;
+  }
+  .portrait-hero h1 {
+    font-size: clamp(46px, 12vw, 65px);
+    line-height: 1;
+    margin-bottom: 17px;
+  }
+  .portrait-hero-description {
+    font-size: 13px;
+    max-width: 320px;
+    margin-bottom: 19px;
+  }
+  .portrait-hero-actions :is(button, a) {
+    padding: 10px 13px;
+    font-size: 12px;
+  }
+  .portrait-hero-story {
+    left: 24px;
+    top: auto;
+    bottom: 155px;
+  }
+  .portrait-hero-story h2 {
+    font-size: 32px;
+  }
+  .portrait-hero-footer {
+    left: 24px;
+    right: 24px;
+    top: 100px;
+    bottom: auto;
+    justify-content: flex-end;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+  }
+  .portrait-hero-footer > span {
+    display: none;
+  }
+}
+@media (max-height: 640px) and (min-width: 601px) {
+  .portrait-hero-stage {
+    min-height: 100svh;
+  }
+  .portrait-hero-content {
+    padding-top: 95px;
+    padding-bottom: 65px;
+  }
+  .portrait-hero h1 {
+    font-size: 48px;
+  }
+  .portrait-hero-eyebrow {
+    margin-bottom: 10px;
+  }
+  .portrait-hero-description {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  .portrait-hero-story {
+    top: 38%;
+  }
+  .portrait-hero-footer {
+    bottom: 12px;
+  }
+}
+
+.portrait-hero-arrival {
+  position: absolute;
+  inset: 0;
+  transform-origin: 55% 34%;
+}
+.portrait-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 40%;
+  opacity: 0;
+}
+.portfolio-charcoal #home .portrait-hero-video {
+  opacity: 0;
+}
+.portfolio-charcoal #home .portrait-hero-video.is-ready,
+#home .portrait-hero-video.is-ready {
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .portrait-hero-video {
+    object-position: 55% 40%;
+  }
+}
+
+/* A wider portrait with a small vertical crop, blended into a full-screen background. */
+.portrait-hero-backdrop {
+  display: none;
+}
+@media (min-width: 601px) and (min-aspect-ratio: 1/1) {
+  .portrait-hero-visual {
+    inset: 0;
+    width: 100%;
+  }
+  .portrait-hero-backdrop {
+    display: block;
+    position: absolute;
+    inset: -4%;
+    width: 108%;
+    height: 108%;
+    object-fit: cover;
+    object-position: 55% 35%;
+    filter: blur(24px) brightness(0.65);
+  }
+  .portrait-hero-image,
+  .portrait-hero-video {
+    position: absolute;
+    inset: auto;
+    top: -14%;
+    left: 55%;
+    width: 106.4svh;
+    max-width: none;
+    height: 120%;
+    aspect-ratio: 9 / 16;
+    transform: translateX(-50%);
+    object-fit: cover;
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+  }
+}
